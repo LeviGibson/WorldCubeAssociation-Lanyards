@@ -5,6 +5,7 @@ import subprocess
 
 TOP_EDGE_PADDING = 60
 SIDE_EDGE_PADDING = 400
+PADDING_BETWEEN_CARDS = 10
 
 subprocess.call("rm -f pngs/*.png", shell=True)
 
@@ -33,10 +34,10 @@ def run():
             for y in range(5):
                 card = Image.open(inserts[cardsDone])
                 card = card.resize((3370//2, 2125//2))
-                insertcanvas.paste(card, (x*(3390//2) + SIDE_EDGE_PADDING, y*(2140//2) + TOP_EDGE_PADDING))
+                insertcanvas.paste(card, (x*(3370//2 + PADDING_BETWEEN_CARDS) + SIDE_EDGE_PADDING, y*(2125//2 + PADDING_BETWEEN_CARDS) + TOP_EDGE_PADDING))
 
                 card = get_card_image(cardsDone)
-                cardcanvas.paste(card, ((1-x)*(3390//2) + SIDE_EDGE_PADDING, y*(2140//2) + TOP_EDGE_PADDING))
+                cardcanvas.paste(card, ((1-x)*(3370//2 + PADDING_BETWEEN_CARDS) + SIDE_EDGE_PADDING, y*(2125//2 + PADDING_BETWEEN_CARDS) + TOP_EDGE_PADDING))
 
                 cardsDone+=1
         
