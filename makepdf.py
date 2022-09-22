@@ -14,12 +14,6 @@ cards = cards[0:len(inserts)]
 cardsDone = 0
 canvasesDone = 0
 
-def filename(num):
-    num = str(num)
-    for i in range(4-len(num)):
-        num = '0' + num
-
-    return num + '.png'
 
 def get_card_image(cardsDone):
     card = Image.open(cards[cardsDone])
