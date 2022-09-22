@@ -2,9 +2,13 @@ import PIL
 from PIL import Image, ImageDraw, ImageFont
 import random
 import subprocess
+import os
 from os.path import exists
 import argparse
+
+#local imports
 import makepdf
+import cards
 
 subprocess.call("rm -f inserts/*.png", shell=True)
 LOGO_SIZE = 256
@@ -92,6 +96,10 @@ if __name__ == "__main__":
     parser.add_argument('-nosubtext', help="Don't add subtext under Competitor Name (Pronouns / Roles)")
     parser.add_argument('-subtextsize', type=int, help="Size of subtext (Default 8-)")
     args = parser.parse_args()
+
+    print("Generating competitor cards")
+    cards.run()
+    print("Competitor cards done")
 
     if args.logosize:
         LOGO_SIZE = int(args.logosize)

@@ -5,12 +5,12 @@ from os.path import exists
 import glob
 import numpy as np
 
-subprocess.call("rm -f *.png", shell=True)
-subprocess.call("rm -f individual/*.png", shell=True)
-subprocess.call("pdftoppm cards.pdf page -png", shell=True)
+subprocess.call("rm -f compcards/*.png", shell=True)
+subprocess.call("rm -f compcards/individual/*.png", shell=True)
+subprocess.call("cd compcards && pdftoppm cards.pdf page -png && cd ..", shell=True)
     
 
-filenames = glob.glob("*.png")
+filenames = glob.glob("compcards/*.png")
 filenames.sort()
 
 print(filenames)
@@ -44,12 +44,16 @@ def trim_card(im):
     bbox = diff.getbbox()
     return im.crop(bbox)
 
-for pageid, pagename in enumerate(filenames):
-    page = Image.open(pagename)
-    page = crop_to_edges(page)
-    width, height = page.size
-    for y in range(4):
-        for x in range(3):
-            card = page.crop(((width/3)*x, (height/4)*y, (width/3)*(x+1), (height/4)*(y+1)))
-            card = trim_card(card)
-            card.save("individual/{}.png".format("{0:0=4d}".format(x + y*3 + (3*4*pageid))))
+def run():
+    for pageid, pagename in enumerate(filenames):
+        page = Image.open(pagename)
+        page = crop_to_edges(page)
+        width, height = page.size
+        for y in range(4):
+            for x in range(3):
+                card = page.crop(((width/3)*x, (height/4)*y, (width/3)*(x+1), (height/4)*(y+1)))
+                card = trim_card(card)
+                card.save("compcards/individual/{}.png".format("{0:0=4d}".format(x + y*3 + (3*4*pageid))))
+
+if __name__ == "__main__":
+    run()
