@@ -93,9 +93,17 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Generate double-sided lanyard inserts for WCA competitions')
     parser.add_argument('-name', help="Name of the competition.", default="Genaric Competition 2054")
     parser.add_argument('-logosize', type=int, help="Size in pixels of the logos to the left and right of the Competition Name. Default 256")
-    parser.add_argument('-nosubtext', help="Don't add subtext under Competitor Name (Pronouns / Roles)")
+    parser.add_argument('-nosubtext', action='store_true', help="Don't add subtext under Competitor Name (Pronouns / Roles)")
     parser.add_argument('-subtextsize', type=int, help="Size of subtext (Default 8-)")
+    parser.add_argument('-clean', action='store_true', help="Run with -clean flag to remove all extra PNG files")
     args = parser.parse_args()
+
+    if args.clean:
+        subprocess.call("rm -f pngs/*.png", shell=True)
+        subprocess.call("rm -f compcards/*.png", shell=True)
+        subprocess.call("rm -f compcards/individual/*.png", shell=True)
+        subprocess.call("rm -f inserts/*.png", shell=True)
+        exit(0)
 
     print("Generating competitor cards")
     cards.run()

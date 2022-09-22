@@ -13,8 +13,6 @@ subprocess.call("cd compcards && pdftoppm cards.pdf page -png && cd ..", shell=T
 filenames = glob.glob("compcards/*.png")
 filenames.sort()
 
-print(filenames)
-
 crop = None
 
 def crop_to_edges(img):
