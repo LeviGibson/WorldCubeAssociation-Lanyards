@@ -4,6 +4,7 @@ import random
 import subprocess
 from os.path import exists
 import argparse
+import makepdf
 
 subprocess.call("rm -f inserts/*.png", shell=True)
 LOGO_SIZE = 256
@@ -82,6 +83,7 @@ def run(COMPETITION_NAME):
         I1.text((image.size[0]//2, image.size[1]-(image.size[1]//6)), get_subetext(competitor), fill=(255, 255, 255), font=SUBTEXT_FONT, anchor='mm')
 
         image.save("inserts/{}.png".format("{0:0=4d}".format(i)))
+        print("Lanyard inserts {}% done".format(int((i/len(names))*100)))
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Generate double-sided lanyard inserts for WCA competitions')
@@ -99,3 +101,4 @@ if __name__ == "__main__":
         SUBTEXT_FONT = ImageFont.truetype('RubikMonoOne-Regular.ttf', size=(args.subtextsize))
         
     run(args.name)
+    makepdf.run()

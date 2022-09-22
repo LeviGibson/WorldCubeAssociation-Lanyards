@@ -3,3 +3,4 @@ compcards/individual/*.png
 inserts/*.png
 pngs/*.png
 names.csv
+__pycache__
