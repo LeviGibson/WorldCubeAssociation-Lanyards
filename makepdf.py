@@ -3,6 +3,9 @@ from PIL import Image
 import glob
 import subprocess
 
+TOP_EDGE_PADDING = 60
+SIDE_EDGE_PADDING = 400
+
 subprocess.call("rm -f pngs/*.png", shell=True)
 
 inserts = glob.glob("inserts/*.png")
@@ -30,10 +33,10 @@ def run():
             for y in range(5):
                 card = Image.open(inserts[cardsDone])
                 card = card.resize((3370//2, 2125//2))
-                insertcanvas.paste(card, (x*(3390//2), y*(2140//2)))
+                insertcanvas.paste(card, (x*(3390//2) + SIDE_EDGE_PADDING, y*(2140//2) + TOP_EDGE_PADDING))
 
                 card = get_card_image(cardsDone)
-                cardcanvas.paste(card, ((1-x)*(3390//2), y*(2140//2)))
+                cardcanvas.paste(card, ((1-x)*(3390//2) + SIDE_EDGE_PADDING, y*(2140//2) + TOP_EDGE_PADDING))
 
                 cardsDone+=1
         
