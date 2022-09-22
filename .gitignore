@@ -4,3 +4,4 @@ inserts/*.png
 pngs/*.png
 names.csv
 __pycache__
+compcards/*.pdf
