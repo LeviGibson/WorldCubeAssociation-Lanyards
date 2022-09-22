@@ -78,7 +78,10 @@ def run():
                 card = page.crop(((width/3)*x, (height/4)*y, (width/3)*(x+1), (height/4)*(y+1)))
                 card = trim_card(card)
                 card = add_padding(card)
-                card.save("compcards/individual/{}.png".format("{0:0=4d}".format(x + y*3 + (3*4*pageid))))
+
+                #Don't save card if it's blank.
+                if np.min(np.asarray(card)) < 200:
+                    card.save("compcards/individual/{}.png".format("{0:0=4d}".format(x + y*3 + (3*4*pageid))))
 
 if __name__ == "__main__":
     run()

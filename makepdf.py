@@ -9,8 +9,6 @@ inserts = glob.glob("inserts/*.png")
 cards = glob.glob("compcards/individual/*.png")
 inserts.sort(), cards.sort()
 
-cards = cards[0:len(inserts)]
-
 cardsDone = 0
 canvasesDone = 0
 
