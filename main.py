@@ -40,9 +40,6 @@ def read_names_from_csv():
 
 names = read_names_from_csv()
 
-def color_ramp():
-    return (0, 0, random.randint(0, 255))
-
 def make_background(COMPETITION_NAME):
     COMPETITION_NAME_FONT = ImageFont.truetype('RubikMonoOne-Regular.ttf', size=(1200)//len(COMPETITION_NAME))
 

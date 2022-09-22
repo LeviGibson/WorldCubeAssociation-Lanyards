@@ -57,6 +57,17 @@ def trim_card(im):
     bbox = diff.getbbox()
     return im.crop(bbox)
 
+def add_padding(im):
+    bg = Image.open("background_competitor.png")
+    bgsize = bg.size
+    bg = Image.new('RGB', bgsize, (255, 255, 255))
+    ratio = min((bgsize[0])/im.size[0], (bgsize[1])/im.size[1])
+    im = im.resize((int(im.size[0]*ratio), int(im.size[1]*ratio)))
+
+    loc = ((bg.size[0] - im.size[0])//2, (bg.size[1] - im.size[1])//2)
+    bg.paste(im, loc)
+    return bg
+
 def run():
     for pageid, pagename in enumerate(filenames):
         page = Image.open(pagename)
@@ -66,6 +77,7 @@ def run():
             for x in range(3):
                 card = page.crop(((width/3)*x, (height/4)*y, (width/3)*(x+1), (height/4)*(y+1)))
                 card = trim_card(card)
+                card = add_padding(card)
                 card.save("compcards/individual/{}.png".format("{0:0=4d}".format(x + y*3 + (3*4*pageid))))
 
 if __name__ == "__main__":
