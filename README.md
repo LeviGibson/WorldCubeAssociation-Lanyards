@@ -1,0 +1,1 @@
+This python script has a dependency of this: https://poppler.freedesktop.org/
