@@ -33,7 +33,7 @@ def run():
                 insertcanvas.paste(card, (x*(3390//2), y*(2140//2)))
 
                 card = get_card_image(cardsDone)
-                cardcanvas.paste(card, (x*(3390//2), y*(2140//2)))
+                cardcanvas.paste(card, ((1-x)*(3390//2), y*(2140//2)))
 
                 cardsDone+=1
         
