@@ -26,7 +26,7 @@ def run():
 
     while cardsDone < len(inserts):
         cardcanvas = Image.new('RGB', (int(8.5*500), 11*500), (255, 255, 255))
-        insertcanvas = Image.new('RGB', (int(8.5*500), 11*500), (0, 0, 0))
+        insertcanvas = Image.new('RGB', (int(8.5*500), 11*500), (255, 255, 255))
 
         for x in range(2):
             for y in range(5):
