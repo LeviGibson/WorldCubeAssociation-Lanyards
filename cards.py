@@ -5,10 +5,25 @@ from os.path import exists
 import glob
 import numpy as np
 
+from pdf2image import convert_from_path
+
+from pdf2image.exceptions import (
+ PDFInfoNotInstalledError,
+ PDFPageCountError,
+ PDFSyntaxError
+)
+
+if not exists("compcards/cards.pdf"):
+    raise Exception("compcards/cards.pdf Not Found. Please download groupifier competitor card PDF to compcards/cards.pdf")
+
 subprocess.call("rm -f compcards/*.png", shell=True)
 subprocess.call("rm -f compcards/individual/*.png", shell=True)
-subprocess.call("cd compcards && pdftoppm cards.pdf page -png && cd ..", shell=True)
-    
+
+images = convert_from_path('compcards/cards.pdf')
+
+for i, image in enumerate(images):
+    fname = "compcards/page-" + str(i) + ".png"
+    image.save(fname, "PNG")
 
 filenames = glob.glob("compcards/*.png")
 filenames.sort()
