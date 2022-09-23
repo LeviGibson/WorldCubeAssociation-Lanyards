@@ -49,12 +49,12 @@ def make_background(COMPETITION_NAME):
 
     if exists("logo1.png"):
         logo = Image.open("logo1.png")
-        logo = logo.resize((LOGO_SIZE, LOGO_SIZE))
+        logo = logo.resize((LOGO_SIZE, LOGO_SIZE), PIL.Image.Resampling.NEAREST)
         background.paste(logo, (background.size[0]//10 - logo.size[0]//2, background.size[1]//6 - logo.size[0]//2), logo)
 
     if exists("logo2.png"):
         logo = Image.open("logo2.png")
-        logo = logo.resize((LOGO_SIZE, LOGO_SIZE))
+        logo = logo.resize((LOGO_SIZE, LOGO_SIZE), PIL.Image.Resampling.NEAREST)
         background.paste(logo, (background.size[0]-(background.size[0]//10) - logo.size[0]//2, background.size[1]//6 - logo.size[0]//2), logo)
 
     return background
