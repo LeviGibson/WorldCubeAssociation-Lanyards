@@ -13,6 +13,8 @@ from pdf2image.exceptions import (
  PDFSyntaxError
 )
 
+COMPCARD_SCALE_FACTOR = .85
+
 if not exists("compcards/cards.pdf"):
     raise Exception("compcards/cards.pdf Not Found. Please download groupifier competitor card PDF to compcards/cards.pdf")
 
@@ -62,7 +64,7 @@ def add_padding(im):
     bgsize = bg.size
     bg = Image.new('RGB', bgsize, (255, 255, 255))
     ratio = min((bgsize[0])/im.size[0], (bgsize[1])/im.size[1])
-    im = im.resize((int(im.size[0]*ratio), int(im.size[1]*ratio)))
+    im = im.resize((int(im.size[0]*ratio*COMPCARD_SCALE_FACTOR), int(im.size[1]*ratio*COMPCARD_SCALE_FACTOR)))
 
     loc = ((bg.size[0] - im.size[0])//2, (bg.size[1] - im.size[1])//2)
     bg.paste(im, loc)
