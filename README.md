@@ -27,3 +27,20 @@ After the script is finished running, there should be many PNG files in the `png
 
 Print them out double sided, cut them, and you have some ready-to-use lanyard inserts! Enjoy!
 
+# Customising the Lanyards
+
+By default, the lanyards look like this
+![Alt text](images/Standard Card.png?raw=true "Title")
+
+The pronouns are taken from the competitor's gender, and genders other than male/female are marked as they/them.
+
+You can also make the program display the person's role (Competitor, Staff, Organizer, Delegate) instead of their pronouns by editing the `names.csv` file like so:
+![Alt text](images/roles.png?raw=true "Title")
+
+You can also remove the subtext entirely by running main.py with the `-nosubtext` flag.
+
+You can also replace `logo1.png` and `logo2.png` with whatever logos you want, or you can delete them entirely. 
+This program uses TheCubicle logo and the WCA logo as a defualt.
+You can also change the size of the logos with the -logosize flag like this:
+
+`python3 ./main.py -name "Cubing In Boston 2022" -logosize 200`

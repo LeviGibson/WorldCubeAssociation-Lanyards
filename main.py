@@ -61,10 +61,7 @@ def make_background(COMPETITION_NAME):
 
 def get_subetext(competitor):
     if SUBTEXT:
-        if competitor[1] == "CMP": return "Competitor"
-        if competitor[1] == "STF": return "Staff"
-        if competitor[1] == "DEL": return "Delegate"
-        if competitor[1] == "ORG": return "Organizer"
+        if competitor[1] != 'a': return competitor[1]
         if competitor[2] == 'm': return "he/him"
         if competitor[2] == 'f': return "she/her"
         if competitor[2] == '0': return "they/them"
