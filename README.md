@@ -13,7 +13,7 @@ This pdf can be downloaded from groupifier. This must be an 8.5x11 pdf. support 
 Next you can go to the registration tab of your competition and download a CSV file containing the names of all your registered competitors. Select all and click `Export To CSV`.
 Move this to this folder and rename it to `names.csv`
 
-![Alt text](images/Screenshot from 2022-09-23 09-59-43.png?raw=true "Title")
+![alt text](https://github.com/LeviGibson/WorldCubeAssociation-Lanyards/blob/main/images/Screenshot%20from%202022-09-23%2009-59-43.png)
 Now the these files should exist:
 
 `names.csv`
@@ -30,12 +30,14 @@ Print them out double sided, cut them, and you have some ready-to-use lanyard in
 # Customising the Lanyards
 
 By default, the lanyards look like this
-![Alt text](images/Standard Card.png?raw=true "Title")
+
+![alt text](https://github.com/LeviGibson/WorldCubeAssociation-Lanyards/blob/main/images/Standard%20Card.png)
 
 The pronouns are taken from the competitor's gender, and genders other than male/female are marked as they/them.
 
 You can also make the program display the person's role (Competitor, Staff, Organizer, Delegate) instead of their pronouns by editing the `names.csv` file like so:
-![Alt text](images/roles.png?raw=true "Title")
+
+![alt text](https://github.com/LeviGibson/WorldCubeAssociation-Lanyards/blob/main/images/roles.png)
 
 You can also remove the subtext entirely by running main.py with the `-nosubtext` flag.
 
