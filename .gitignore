@@ -1,7 +1,2 @@
-compcards/*.png
-compcards/individual/*.png
-inserts/*.png
-pngs/*.png
 names.csv
 __pycache__
-compcards/*.pdf
