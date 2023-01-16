@@ -23,12 +23,13 @@ subprocess.call("rm -f compcards/individual/*.png", shell=True)
 
 images = convert_from_path('compcards/cards.pdf')
 
+filenames = []
+
 for i, image in enumerate(images):
     fname = "compcards/page-" + str(i) + ".png"
+    filenames.append(fname)
     image.save(fname, "PNG")
 
-filenames = glob.glob("compcards/*.png")
-filenames.sort()
 
 crop = None
 

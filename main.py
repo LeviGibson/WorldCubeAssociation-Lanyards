@@ -110,5 +110,7 @@ if __name__ == "__main__":
     if args.subtextsize:
         SUBTEXT_FONT = ImageFont.truetype('RubikMonoOne-Regular.ttf', size=(args.subtextsize))
         
+    print("running")
     run(args.name)
+    print("makepdf")
     makepdf.run()

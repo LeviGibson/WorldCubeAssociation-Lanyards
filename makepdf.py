@@ -27,23 +27,25 @@ SIDE_EDGE_PADDING = get_side_padding()
 
 subprocess.call("rm -f pngs/*.png", shell=True)
 
-inserts = glob.glob("inserts/*.png")
-cards = glob.glob("compcards/individual/*.png")
-inserts.sort(), cards.sort()
-
 cardsDone = 0
 canvasesDone = 0
 
-
 def run():
     global cardsDone, canvasesDone
+    
+    inserts = glob.glob("inserts/*.png")
+    print("Len inserts:", len(inserts))
+    cards = glob.glob("compcards/individual/*.png")
+    inserts.sort(), cards.sort()
 
-    while cardsDone < len(inserts):
+    while cardsDone < (len(inserts)-1):
+        
         cardcanvas = Image.new('RGB', (PAGEWIDTH, PAGEHEIGHT), (255, 255, 255))
         insertcanvas = Image.new('RGB', (PAGEWIDTH, PAGEHEIGHT), (255, 255, 255))
 
         for x in range(2):
             for y in range(5):
+                print(cardsDone)
                 card = Image.open(inserts[cardsDone])
                 card = card.resize((CARDWIDTH, CARDHEIGHT))
                 insertcanvas.paste(card, (x*(3370//2 + PADDING_BETWEEN_CARDS) + SIDE_EDGE_PADDING, y*(2125//2 + PADDING_BETWEEN_CARDS) + TOP_EDGE_PADDING))
@@ -51,11 +53,13 @@ def run():
                 card = Image.open(cards[cardsDone])
                 card = card.resize((CARDWIDTH, CARDHEIGHT))
                 cardcanvas.paste(card, ((1-x)*(3370//2 + PADDING_BETWEEN_CARDS) + SIDE_EDGE_PADDING, y*(2125//2 + PADDING_BETWEEN_CARDS) + TOP_EDGE_PADDING))
-
+ 
                 cardsDone+=1
+                if cardsDone > (len(inserts)-1): break
+            if cardsDone > (len(inserts)-1): break
         
-        cardcanvas.save("pngs/cards-{}.png".format(canvasesDone))
-        insertcanvas.save("pngs/inserts-{}.png".format(canvasesDone))
+        cardcanvas.save("pngs/{}.png".format(2*canvasesDone+1))
+        insertcanvas.save("pngs/{}.png".format(2*canvasesDone))
         print("Page {} saved".format(canvasesDone))
         canvasesDone+=1
 
